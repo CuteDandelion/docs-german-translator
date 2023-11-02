@@ -9,13 +9,14 @@
 </body>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css">
+
 <script>
-    var botmanWidget = {
+var botmanWidget = {
         aboutText: 'write something here',
-        introMessage: "✋ Hi! I'm form shouts.dev"
+        introMessage: "✋ Hia !I'm a GPT powered german learning bot. How can i help you today? ",
+        desktopHeight: 1000,
+        desktopWidth : 1000
     };
 </script>
-
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
-
 </html>
