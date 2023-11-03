@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use BotMan\BotMan\Messages\Attachments\Image;
+use BotMan\BotMan\Messages\Attachments\File;
+use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\BotMan;
 use Illuminate\Http\Request;
@@ -22,7 +25,23 @@ class BotmanController extends Controller
     public function handle()
     {
         $botman = app('botman');
-        $bot = new mybot($botman);        
+        $bot = new mybot($botman);  
+
+        $botman->receivesFiles(function($botman, $files) use($bot) {
+
+             foreach ($files as $file) {
+                  $filerl = $file->getUrl(); // The direct url
+                  $filepayload = $file->getPayload(); // The original payload
+             }
+             
+             $attachment = new File($fileurl, [
+                           'custom_payload' => true,
+             ]);
+
+             // Build message object
+             $test = OutgoingMessage::create('This is what you provided.')->withAttachment($attachment);
+             $bot->replyWithDelay($test);
+        });      
 
         $botman->hears('{message}', function($botman, $message) use($bot) {
 
