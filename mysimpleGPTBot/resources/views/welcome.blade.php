@@ -2,6 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>How to install Botman Chatbot in Laravel? - shouts.dev</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 </head>
@@ -12,23 +13,33 @@
 <style>
 </style>
 <script>
+
 var botmanWidget = {
         aboutText: 'write something here',
-        introMessage: "✋ Hia !I'm a GPT powered german learning bot. How can i help you today? ",
+        introMessage: "✋ Hi ! I'm a GPT powered german learning bot. Try asking question or start uploading one file ONLY to see what i can do !!!",
         desktopHeight: 1000,
-        desktopWidth : 1000
+        desktopWidth : 1000,
+        userId : ""
     };
+
 </script>
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-const botmanInterval = setInterval(checkBotman, 10);
-    function checkBotman(){
+var fileContainer;
+var files;
+var filetype;
+const botmanInterval00 = setInterval(setupAttachInput, 10);
+    function setupAttachInput(){
         if(window.botmanChatWidget != "undefined"){
            if (document.getElementById('chatBotManFrame') != null){
               const iframe = document.getElementById('chatBotManFrame');
               if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
                    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
                    if (iframeDocument.getElementsByClassName('attachment-icon').length === 0){
+                   /*window.botmanChatWidget.whisper('_DUMMY_');*/
+                   var userID = generateUUID();
+                   window.botmanChatWidget.whisper('_USER_'+userID);
                    const userText = iframeDocument.getElementById('userText'); 
                    // Create a new attachment/upload icon element
                    const attachmentIcon = document.createElement("span");
@@ -40,8 +51,22 @@ const botmanInterval = setInterval(checkBotman, 10);
                    attachmentIcon.onclick = openFileInput;
                    userText.style.width="93%";
 
-                   // Insert the attachment icon after the existing text input
+                   const filelist = document.createElement("div");
+                   filelist.id = "fileList";
+                   filelist.className = "#fileList";
+                   filelist.backgroundColor='#f5f5f5';
+                   filelist.padding="10px";
+                   filelist.border="1px solid #ddd";
+                   filelist.borderRadius="5px";
+                   filelist.marginBottom="10px";
+                   filelist.display="none";
+                   filelist.style.float="up";
+
+                   // Insert the attachment icon before the existing text input
                    userText.insertAdjacentElement("beforebegin", attachmentIcon);
+                   userText.insertAdjacentElement("beforebegin",filelist);
+
+                   fileContainer = iframeDocument.getElementById('fileList');
                    }
               }
            }
@@ -59,8 +84,62 @@ const botmanInterval = setInterval(checkBotman, 10);
 
    function handleFileSelection() {
           const selectedFiles = this.files;
-          const fileNames = Array.from(selectedFiles).map(file => file.name).join(', ');
-          console.log(fileNames);
+          files = selectedFiles;
+          /*const fileNames = Array.from(selectedFiles).map(file => file.name);
+          fileContainer.innerHTML = "Uploaded Files: " + fileNames.join(", ");
+          fileContainer.style.display = "block";*/ 
+          sendFile(selectedFiles[0],'file');
    }
-</script>
+
+   function sendFile(file, filetype){
+        console.log(file);
+        var formData = new FormData();
+        formData.append("driver", "web");
+        formData.append("attachment",filetype);
+        formData.append("interactive", 0);
+        formData.append("file", file);
+        formData.append("name",file.name);
+        formData.append("lastModified",file.lastModified);
+        formData.forEach(function(value, key) {
+               console.log(key, value);
+        });
+        $.ajaxSetup({
+                headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
+        
+        $.ajax({
+                url: '/botman',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    // Handle the bot's response here
+                    console.log(response);
+                    //var respLen = response.messages.length;
+                    window.botmanChatWidget.sayAsBot('Perfect!! '+file.name+' successfully received');
+                    window.botmanChatWidget.whisper('_FILEOPTS_');
+                },
+                error: function(xhr, status, error) {
+                    // Handle the error and log it to the console
+                    console.log('AJAX Error:', status, error);
+                }
+            });
+        
+        
+   }
+
+   function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+  }
+
+
+
+</script>>
 </html>
