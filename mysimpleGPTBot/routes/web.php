@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    session(['sessionid' => random_bytes(10)]);
     return view('welcome');
 });
 Route::match(['get', 'post'], '/botman', [\App\Http\Controllers\BotmanController::class,'handle']);
