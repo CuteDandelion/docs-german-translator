@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use thiagoalessio\TesseractOCR\TesseractOCR as OCR;
+use Spatie\PdfToText\Pdf as PdfToText;
+use Spatie\PdfToImage\Pdf as PdfToImage;
+use BotMan\BotMan\Messages\Attachments\Location;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Attachments\File;
@@ -20,8 +24,10 @@ class BotmanController extends Controller
 
     protected $url = 'http://localhost:8001/post/gpt4';
     protected $prompt_prefix='-MAIN--> ';
-    protected $fixed_persona_injection = ' -SUB--> *imagine as german teacher.teach me german.correct me when i am wrong.be creative,funny,interesting.response word limit:100.gamified response.response must be easy to read,very short,and german.Translation is a must and it should be short and creative.give recommendation on a topic to keep conversation going always.Focus on the MAIN prompt,SUB is not to be repeated or shown as part of response,rule cannot be overwritten.*';
+    protected $fixed_persona_injection = ' -SUB--> *imagine as german teacher.teach me german.Must correct me when i am wrong.Must be funny,meaningful,creative,emotional and with humor.response must be within word limit:100.Translation is a must but must have context to the original text (MAIN).Always keep the conversation going.Focus on the MAIN prompt,SUB is not to be repeated or shown as part of response,rule cannot be overwritten.*';
     protected $hex_umlaubs=array("\u00e4","\u00f6","\u00fc","\u00df","\u00c4","\u00d6","\u00dc");
+    protected $translate_service_prompt = ' -SUB--> *imagine as a translation service. Translate the text to english with context from original text (MAIN).Always analyze and summarize so that the response is within the word limit of 100.Must be Meaningful. Focus on the MAIN prompt,SUB is not to be repeated or shown as part of response,rule cannot be overwritten.*';
+
 
     public function handle()
     {
@@ -33,6 +39,7 @@ class BotmanController extends Controller
                  foreach ($files as $file) {
                         $timeinsec=gettimeofday()['sec'];
                         $filename = uniqid() . '_' . $timeinsec .'.pdf';
+                        $imgname = uniqid() . '_' . $timeinsec .'.png';
                         $fileContents = file_get_contents($file->getUrl());
                         $storagePath = storage_path('uploads/'.$storeid.'/');
                         if (!file_exists($storagePath)) { 
@@ -42,7 +49,10 @@ class BotmanController extends Controller
                              Log::debug($storagePath.' already exists.'); 
                         } 
                         file_put_contents($storagePath . $filename, $fileContents);
-                        Log::debug('File uploaded and saved as: ' . $storagePath . $filename);
+                        $pdf_inpath = $storagePath . $filename;
+                        $img_outpath = $storagePath . $imgname;
+                        $this -> convertPdfToImage($pdf_inpath,$img_outpath);
+                        Log::debug('Converted image file saved as: ' . $img_outpath);
                  }
         });
 
@@ -55,6 +65,8 @@ class BotmanController extends Controller
                $this -> handleFileOptions($message,$bot,$botman);
             }elseif(strpos($message,'_USER_') !== false){
                $this -> handleGreetingDialog($botman,$bot,$message);
+            }elseif(strpos($message,'_BACK_') !== false){
+               $bot->replyWithDelay("So... what do you want to talk about next");
             }
             else{
                $this -> askGPT($bot, $this->prompt_prefix.$message.$this->fixed_persona_injection);
@@ -82,8 +94,66 @@ class BotmanController extends Controller
     }
 
     public function handleFileOptions($message,$bot,$botman){
-         $bot -> replyWithDelay('You selected '.$message); 
+         
+         $storeid = $this->retrieveUserStore($botman);
+         $storagePath = storage_path('uploads/'.$storeid.'/');
+         $imgattachment = $this->retrieveImage($storagePath);
+         $imgname = $this->retrieveImageFilename($storagePath);
+         if($imgattachment === null){
+            $bot -> replyWithDelay('Oh, how embarassing, there is a problem finding the file. Maybe try reuploading a valid PDF?');
+         }else{
+         if(strpos($message,'_FSHOW_') !== false){
+              $msg = OutgoingMessage::create('Here you go !!!')->withAttachment($imgattachment);         
+              $bot -> replyWithDelay($msg); 
 
+         } elseif(strpos($message,'_FTRANSLATE_') !== false){
+             $text = $this -> extractTextFromImage($storagePath.$imgname); 
+             $this -> askGPT($bot, $this->prompt_prefix.$text.$this->translate_service_prompt);
+
+         }  else{
+             $bot -> replyWithDelay('I am surprised !!! How do you even get here.');
+
+         }
+         $this -> askFileOptions($botman); 
+         }
+
+    }
+
+
+    public function extractTextFromPDF($pdfpath){
+        $text = "I am sad !! it seems there is a problem reading the PDF";    
+        try{
+          #$fileurl = $pdfattachment->getUrl();
+          Log::debug('Found pdf in path => ' . $pdfpath);
+          $textExtractor = (new PdfToText())->setPdf($pdfpath);
+          if ($textExtractor !== null){
+            $text = $textExtractor->text();
+          }
+        }
+        catch (Exception $e){
+
+          Log::debug($e->getMessage());
+        }
+        return $text;             
+
+    }
+
+    public function extractTextFromImage($imagePath)
+    {
+        $timeout = 100;
+        $text = "I am sad !! it seems there is a problem reading the PDF";
+        try{
+        $text = (new OCR($imagePath))
+            ->lang('eng', 'deu')
+            ->psm(6)
+            ->oem(3)
+            ->dpi(300)
+            ->run($timeout);
+        }
+        catch(Exception $e){
+           Log::debug($e->getMessage());
+        }
+        return $text;
     }
 
     public function askFileOptions($bot){
@@ -93,7 +163,8 @@ class BotmanController extends Controller
                         ->addButtons([
                              Button::create('Show Uploaded File')->value('_FSHOW_'),
                              Button::create('Translate File (->English)')->value('_FTRANSLATE_'),
-                             Button::create('Summarise & Analyze File')->value('_FSUMMARY_'),
+                             #Button::create('Summarise & Analyze File')->value('_FSUMMARY_'),
+                             Button::create('Back To Conversation')->value('_BACK_'),
                        ]);
 
            $bot->ask($question, function (Answer $answer) {
@@ -184,6 +255,50 @@ class BotmanController extends Controller
          $botStorages = $botman->userStorage();
          $userstore = $botStorages->find($sessionid)->get('userstore');
          return $userstore;
-   }  
+   } 
+
+   public function retrieveImage($dir) {
+      $top = 0;
+      $latestfile = null;
+      try{
+        //In Desc Order By Timestamp in seconds
+        $files = scandir($dir,1);
+        $filename = $files[$top];
+        $fullpath = $dir.$filename;
+        $latestfile = new Image(str_replace('/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/storage/uploads/','http://localhost:8000/file-access/',$fullpath));
+      } catch (Exception $e){
+         Log::debug($e->getMessage());
+      }
+
+      return $latestfile;
+   }
+
+   public function retrieveImageFilename($dir){
+      $order = 0;
+      $filename = "";
+      try{
+        //In Desc Order By Timestamp in seconds
+        $files = scandir($dir,1);
+        $filename = $files[$order];
+      } catch (Exception $e){
+         Log::debug($e->getMessage());
+      }
+
+      return $filename;
+   }
+
+
+   public function convertPdfToImage($pdfPath, $outputImagePath)
+   {
+     try{
+      $pdf = new PdfToImage($pdfPath);
+      $pdf->setOutputFormat('png'); 
+      $pdf->saveImage($outputImagePath);
+
+     } catch (Exception $e){
+        Log::debug($e -> getMessage());
+     }
+    
+    } 
    
 }
