@@ -12,7 +12,10 @@
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "spatie/pdf-to-image": "^2.2",
+        "spatie/pdf-to-text": "^1.52",
+        "thiagoalessio/tesseract_ocr": "^2.13"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
