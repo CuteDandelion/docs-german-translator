@@ -1,17 +1,17 @@
 
 ## Table Of Content
 
-- [ABOUT](https://github.com/CuteDandelion/docs-german-translator#about-1)
-- [REQUIREMENTS](https://github.com/CuteDandelion/docs-german-translator#requirements-1)
-- [PREREQUISITE](https://github.com/CuteDandelion/docs-german-translator#prerequisite-1)
-- [REFERENCES/TEMPLATES](https://github.com/CuteDandelion/docs-german-translator#referencestemplates-1)
-- [GIT COMMIT HISTORY](https://github.com/CuteDandelion/docs-german-translator#git-commit-history-1)
-- [UML DIAGRAMS](https://github.com/CuteDandelion/docs-german-translator#uml-diagrams-1)
-- [REQUIREMENT ENGINEERING/PROJECT MANAGEMENT TOOLS](https://github.com/CuteDandelion/docs-german-translator#requirement-engineeringproject-management-tools-1)
-- [CHEAT SHEET](https://github.com/CuteDandelion/docs-german-translator#cheat-sheet-1)
-- [DDD (DOMAIN DRIVEN DEVELOPMENT)](https://github.com/CuteDandelion/docs-german-translator#ddd-domain-driven-development-1)
-- [CLEAN CODE (CODE SNIPPET,BUILD & UNIT TESTS)](https://github.com/CuteDandelion/docs-german-translator#clean-code-code-snippetbuild--unit-tests-1)
-- [IDE](https://github.com/CuteDandelion/docs-german-translator#ide-1)
+- [ABOUT](https://github.com/CuteDandelion/docs-german-translator#about)
+- [REQUIREMENTS](https://github.com/CuteDandelion/docs-german-translator#requirements)
+- [PREREQUISITE](https://github.com/CuteDandelion/docs-german-translator#prerequisite)
+- [REFERENCES/TEMPLATES](https://github.com/CuteDandelion/docs-german-translator#referencestemplates)
+- [GIT COMMIT HISTORY](https://github.com/CuteDandelion/docs-german-translator#git-commit-history)
+- [UML DIAGRAMS](https://github.com/CuteDandelion/docs-german-translator#uml-diagrams)
+- [REQUIREMENT ENGINEERING/PROJECT MANAGEMENT TOOLS](https://github.com/CuteDandelion/docs-german-translator#requirement-engineeringproject-management-tools)
+- [CHEAT SHEET](https://github.com/CuteDandelion/docs-german-translator#cheat-sheet)
+- [DDD (DOMAIN DRIVEN DEVELOPMENT)](https://github.com/CuteDandelion/docs-german-translator#ddd-domain-driven-development)
+- [CLEAN CODE (CODE SNIPPET,BUILD & UNIT TESTS)](https://github.com/CuteDandelion/docs-german-translator#clean-code-code-snippetbuild--unit-tests)
+- [IDE](https://github.com/CuteDandelion/docs-german-translator#ide)
 
 ## ABOUT 
 
