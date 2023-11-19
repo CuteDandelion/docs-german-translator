@@ -1,18 +1,15 @@
 
-1. ###### ABOUT ######
-2. ###### REQUIREMENTS ###### 
-3. ###### PREREQUISITE ######
-4. ###### REFERENCES/TEMPLATES ######
-5. ###### GIT COMMIT HISTORY ######
-6. ###### UML DIAGRAMS ######
-7. ###### REQUIREMENT ENGINEERING/PROJECT MANAGEMENT TOOLS ######
-8. ###### CHEAT SHEET ######
-9. ###### DDD (DOMAIN DRIVEN DEVELOPMENT) ######
-10. ###### CLEAN CODE (CODE SNIPPET,BUILD & UNIT TESTS) ######
-11. ###### IDE ######
-
-
-
+###### ABOUT ######
+###### REQUIREMENTS ###### 
+###### PREREQUISITE ######
+###### REFERENCES/TEMPLATES ######
+###### GIT COMMIT HISTORY ######
+###### UML DIAGRAMS ######
+###### REQUIREMENT ENGINEERING/PROJECT MANAGEMENT TOOLS ######
+###### CHEAT SHEET ######
+###### DDD (DOMAIN DRIVEN DEVELOPMENT) ######
+###### CLEAN CODE (CODE SNIPPET,BUILD & UNIT TESTS) ######
+###### IDE ######
 
 ## ABOUT 
 
