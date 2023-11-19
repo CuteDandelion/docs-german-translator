@@ -1,48 +1,80 @@
 
-###### ABOUT ####### 
+1. ###### ABOUT 
+2. ###### REQUIREMENTS 
+3. ###### PREREQUISITE 
+4. ###### REFERENCES/TEMPLATES
+5. ###### GIT COMMIT HISTORY 
+6. ###### UML DIAGRAMS 
+7. ###### REQUIREMENT ENGINEERING/PROJECT MANAGEMENT TOOLS 
+8. ###### CHEAT SHEET
+9. ###### DDD (DOMAIN DRIVEN DEVELOPMENT)
+10. ###### CLEAN CODE (CODE SNIPPET,BUILD & UNIT TESTS)
+11. ###### IDE 
+
+
+
+
+## ABOUT 
+
 Personal Laravel GPT chatbot for German Learning & Documents Translation . Basically a personal mini customizable german teacher and assistant. Free of Charge.
-Lets learn German !!!!!!
+Lets learn German !!!!!! Los Geht's !!!!!!
 
-###### REQUIREMENTS ######
+## REQUIREMENTS 
 
-- MUST be able to converse with user to converse with an appropriate persona . (Hopefully...,preferably a german tutor.)
-- MUST be able to translate, analyse and make a summary of documents (mainly PDF. .txt , .docs , are optional but can be useful. )
-- SHOULD have voice interaction enabled (if time permits)
-- SHOULD have an option or a way to switch GPT model (if time permits)
+- The GPT Chatbot MUST be able to make conversation with user in German and in English depending on contexts .
+- The GPT Chatbot MUST have a german teacher/assistant persona and rules which allow the chatbot to stay in character.
+- The GPT Chatbot MUST be able to handle a single file upload (preferable .PDF).
+- The GPT Chatbot MUST be able to display uploaded file.
+- The GPT Chatbot MUST be able to translate , analyze & make a summary of uploaded file (Languages -> English)
 
-####### PREREQUISITE ######
+## PREREQUISITE 
 
 ### Chat Interface (PHP Base)
-Laravel >= 9.x.x
-composer >= 2.x.x
-PHP=8.0.30
 
-### GPT API (Python Base) (Refer To Another Repo ... To Be Added)
-fastapi>=0.67.0
-celery>=5.1.2
-uvicorn[standard]>=0.13.4
-gunicorn>=20.1.0
-freeGPT>=1.3.4
+- Laravel >= 9.x.x
+- composer >= 2.x.x
+- PHP=8.0.30
+- Node>=v12.xx.xx
 
-###References/Templates
-https://github.com/shoutsdev/laravel-botman-chatbot 
-https://github.com/Ruu3f/freeGPT/tree/main (freeGPT)
-https://github.com/BreezeWhite/simple-fastapi/tree/main
-https://www.tutsmake.com/laravel-8-botman-chatbot-tutorial-example/
 
-###### SOFTWARE ENGINEERING REQ ######
+### GPT API (Python Base) (Refer To Another Repo ... TBD)
 
-### Git Commit History ###
+- python>=3.10.2
+- fastapi>=0.67.0
+- celery>=5.1.2
+- uvicorn[standard]>=0.13.4
+- gunicorn>=20.1.0
+- freeGPT>=1.3.4
+- Pillow>=10.1.0
 
-### Project Management Tool ###
+## REFERENCES/TEMPLATES
 
-### Build Tool ###
+- [Laravel Botman.io Template](https://github.com/shoutsdev/laravel-botman-chatbot) 
+- [Laravel Botman.io Documentation](https://botman.io/2.0/welcome)
+- [FreeGPT Python Library Documentation](https://github.com/Ruu3f/freeGPT/tree/main)
+- [Python FastAPI Quick Template](https://github.com/BreezeWhite/simple-fastapi/tree/main)
+- [Tesseract OCR Setup & Usage Documentation](https://github.com/tesseract-ocr/tesseract#about)
+- [Image-to-Image AI Generator Documentation](https://huggingface.co/docs/diffusers/main/en/using-diffusers/img2img)
 
-### UML Diagrams ###
 
-### Unit Tests ###
+## GIT COMMIT HISTORY
 
-### Clean Code ###
+- [Git Commits History](https://github.com/CuteDandelion/docs-german-translator/commits/main)
+
+## UML DIAGRAMS
+
+## REQUIREMENT ENGINEERING/PROJECT MANAGEMENT TOOLS
+
+- [Notion.so(Standard)](https://www.notion.so/7c64d9edc6a74ca582da0067855640b8?v=3cacb503d3784ebaa85231f940ed193a&pvs=4)
+- [Jira (Commercial)](https://cutedandelion.atlassian.net/jira/software/projects/KAN/boards/1/timeline)
+
+## CHEAT SHEET
+
+## DDD (DOMAIN DRIVEN DEVELOPMENT)
+
+## CLEAN CODE (CODE SNIPPET,BUILD & UNIT TESTS)
+
+## IDE
 
 
 
