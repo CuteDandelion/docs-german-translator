@@ -75,6 +75,10 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 
 ## CLEAN CODE (CODE SNIPPET,BUILD & UNIT TESTS)
 
+### Code Snippet ###
+
+- [Exception-Handling-Example](https://github.com/CuteDandelion/docs-german-translator/blob/d5969c4367a29977c1c32b985b787341e74337fe/mysimpleGPTBot/app/Http/Controllers/BotmanController.php#L276-L288)
+
 ## IDE
 
 - Visual Studio Code
