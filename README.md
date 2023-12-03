@@ -77,5 +77,23 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 
 ## IDE
 
+- Visual Studio Code
+
+### Favourite Shortcut Keys ###
+
+- Ctrl + F : Finds a specific text in the code
+- Ctrl + A: Selects all the lines in the current file
+- Ctrl + S: Saves the pending changes in the current file
+- Ctrl + X: Cut line (empty selection)
+
+- F5: Starts the application in debug mode
+- Ctrl + F5: Starts the application without debug mode
+- Shift + F5: Stops the application when it's running
+- Ctrl + Shift + F5: Stops the application execution, rebuilds the project, and creates a new debugging session
+- F9: Places or removes a breakpoint
+- F10: Skips the execution of code when debugging
+- F11: Debugs source code line by line
+
+- F4: Opens the Properties window.
 
 
