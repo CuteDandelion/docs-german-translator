@@ -1,0 +1,53 @@
+@startuml
+skinparam BackgroundColor transparent
+skinparam componentStyle uml2
+skinparam interface {
+  backgroundColor yellow
+  borderColor black
+}
+component BotmanServer {
+  component FileStorage {
+  }
+  component "BotmanController::Handle()" as handle <<FileListener>>
+  component "BotmanController::askGPT()" as askgpt <<ResponseGenerator>>
+  component "BotmanController::convertPDFToImage()" as pdf2img <<PDFToImageConverter>>
+  component "BotmanController::extractTextFromImage()" as textExtractor <<ImageTextExtractor>>
+  () "JSON_RESP/200" as AT
+  () "TEXT_RESP" as TR1
+  () "TEXT" as TR2
+  () "FILE_STREAM" as FS
+  () "TEXT_INPUT + TRANSLATE/SUMMARY PROMPT" as TI
+  () "IMG_RESP [DisplaySelected]" as IA
+  () "IMG" as IR
+  port p1
+  port p2
+}
+component KnowledgeBase {
+      [FreeGPT] as freegpt <<API Wrapper>>
+}
+
+[Messenger] as messenger <<GUI ::8000>> 
+() "API/HTTP ::8001" as AH
+
+KnowledgeBase .down.>() AH 
+AH .down.> p1
+p1 .down.> AT
+AT ..> askgpt
+askgpt .right.> TR1
+TR1 .right.> handle
+handle .up.> TR2
+TR2 .left.> p2
+p2 ..> messenger : Output
+messenger -down-> BotmanServer : UserUpload::PDF [POST]
+handle -down-> FS
+FS -left-> FileStorage : put/save [/<<userstore>>/<<filename>>]
+pdf2img -up-> FS
+textExtractor -up-> TI
+TI -up-> askgpt
+FileStorage -left-> textExtractor : Get Image Path [TranslateSelected]
+FileStorage -down-> pdf2img : Get PDF Path
+FileStorage .up.> IA
+IA .up.> handle : HTTP/GET
+handle .up.> IR
+IR .left.> p2
+@enduml
