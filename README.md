@@ -80,6 +80,7 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 - [Exception-Handling-Example](https://github.com/CuteDandelion/docs-german-translator/blob/d5969c4367a29977c1c32b985b787341e74337fe/mysimpleGPTBot/app/Http/Controllers/BotmanController.php#L276-L288)
 - [Method-Abstraction-For-Easy-Readability-Example](https://github.com/CuteDandelion/docs-german-translator/blob/d5969c4367a29977c1c32b985b787341e74337fe/mysimpleGPTBot/app/Http/Controllers/BotmanController.php#L59-L74)
 - [Function-With-Clear-Purpose-Example](https://github.com/CuteDandelion/docs-german-translator/blob/d5969c4367a29977c1c32b985b787341e74337fe/mysimpleGPTBot/app/Http/Controllers/BotmanController.php#L195-L210)
+- [Meaningful-Naming-Conventions-Comments-Example (Methods/Variables/Properties)](https://github.com/CuteDandelion/docs-german-translator/blob/d5969c4367a29977c1c32b985b787341e74337fe/mysimpleGPTBot/app/Http/Controllers/BotmanController.php#L260-L274)
 
 ## IDE
 
