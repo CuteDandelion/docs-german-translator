@@ -62,6 +62,8 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 
 ## UML DIAGRAMS
 
+- [UML Diagrams - Link](https://github.com/CuteDandelion/docs-german-translator/tree/main/UMLDiagrams)
+
 ## REQUIREMENT ENGINEERING/PROJECT MANAGEMENT TOOLS
 
 - [Notion.so(Standard)](https://www.notion.so/7c64d9edc6a74ca582da0067855640b8?v=3cacb503d3784ebaa85231f940ed193a&pvs=4)
