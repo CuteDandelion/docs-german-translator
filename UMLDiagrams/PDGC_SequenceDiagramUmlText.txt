@@ -1,0 +1,34 @@
+@startuml
+actor User as user #red
+participant "Chat Interface" as interface #orange
+participant "Botmen Controller" as controller #99FF99
+participant "GPT API" as api #yellow
+
+title "Chatbot Mode Sequence"
+
+== Conversation Mode ==
+autonumber "<font color=blue><b>[00]"
+user->interface: DEU/ENG Chat Request
+interface->controller : << Receive Request >>
+controller->api : Curl Request
+api->controller : JSON Response
+controller->interface : << Receive Response >>
+interface->user : DEU/ENG Chat Response
+
+
+== PDF Handling Mode ==
+autonumber "<font color=green><b>[00]"
+user->interface: Upload Single PDF File (Single Page)
+interface->controller : << Receive PDF File >>
+note right: " PDF file => PNG Image "
+loop "end when backToConversationMode is selected"
+controller->user : Present Options Bubble <show / translate / backToConversationMode>
+controller->user : Display Uploaded PDF As Image < show is selected >
+controller->api : Curl Request
+note left: "Extract Text From Image To Form Request"
+api->controller : JSON Response
+controller->interface : << Receive Response >>
+interface->user : Translation & Summary As Chat Response < translate is selected >
+end
+
+@enduml

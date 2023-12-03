@@ -1,0 +1,34 @@
+@startuml
+skinparam BackgroundColor transparent
+skinparam componentStyle uml2
+skinparam interface {
+  backgroundColor yellow
+  borderColor black
+}
+component BotmanServer {
+  component "BotmanController::Handle()" as handle <<IntentListener>>
+  component "BotmanController::askGPT()" as askgpt <<ResponseGenerator>>
+  () "JSON_RESPONSE/200" as AT
+  () "TEXT_RESPONSE" as TR1
+  () "TEXT_RESPONSE" as TR2
+  port p1
+  port p2
+}
+component KnowledgeBase {
+      [FreeGPT] as freegpt <<API Wrapper>>
+}
+
+[Messenger] as messenger <<GUI ::8000>> 
+() "API/HTTP ::8001" as AH
+
+KnowledgeBase .down.>() AH 
+AH .down.> p1
+p1 .down.> AT
+AT ..> askgpt
+askgpt .right.> TR1
+TR1 .right.> handle
+handle .up.> TR2
+TR2 .left.> p2
+p2 ..> messenger : Output
+messenger -down-> BotmanServer : UserMessage/Intent
+@enduml

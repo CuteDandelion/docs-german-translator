@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+package Actor {
+actor "User" as user
+}
+
+package AIAgent {
+actor "GPT" as system
+}
+
+package PersonalGermanAssistantChatbot {
+  usecase "Chat In German" as UC1
+  usecase "Chat in English" as UC2
+  usecase "Upload A Single PDF File" as UC3
+  usecase "Display Uploaded PDF File as an image" as UC6
+  usecase "Translate Uploaded PDF File" as UC7
+  usecase "Summarize Uploaded PDF File" as UC8
+  usecase "Chat As a German Teacher Persona" as UC9
+}
+user ..> UC1
+user ..> UC2
+user ..> UC3
+
+system .up.> UC1
+system .up.> UC2
+system .up.> UC6
+system .up.> UC7
+system .up.> UC8
+system .up.> UC9
+
+@enduml
