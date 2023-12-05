@@ -67,7 +67,8 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 ## REQUIREMENT ENGINEERING/PROJECT MANAGEMENT TOOLS
 
 - [Notion.so(Standard)-"if you do not see any tasks after clicking this link, click Getting Started then Tasks to view."](https://www.notion.so/7c64d9edc6a74ca582da0067855640b8?v=3cacb503d3784ebaa85231f940ed193a&pvs=4)
-- [Jira (Commercial)](https://cutedandelion.atlassian.net/jira/software/projects/KAN/boards/1/timeline)
+- [Jira (Commercial) - Might not be able to access due to permission limitation,image overview is provided instead](https://cutedandelion.atlassian.net/jira/software/projects/KAN/boards/1/timeline)
+- [Jira (ImageOverview)](https://github.com/CuteDandelion/docs-german-translator/tree/main/JIRA)
 
 ## CHEAT SHEET
 
