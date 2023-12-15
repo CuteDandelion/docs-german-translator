@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::match(['get', 'post'], '/botman', [\App\Http\Controllers\BotmanController::class,'handle']);
 Route::get('/file-access/{storeid}/{filename}', '\App\Http\Controllers\FileAccessController@show');
 
+
