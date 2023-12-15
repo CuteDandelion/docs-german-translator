@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use thiagoalessio\TesseractOCR\TesseractOCR as OCR;
 use Spatie\PdfToText\Pdf as PdfToText;
 use Spatie\PdfToImage\Pdf as PdfToImage;
+use App\Services\PdfConverterService;
 use BotMan\BotMan\Messages\Attachments\Location;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Attachments\Image;
@@ -32,7 +33,7 @@ class BotmanController extends Controller
     public function handle()
     {
         $botman = app('botman');
-        $bot = new mybot($botman);  
+        $bot = new mybot($botman); 
 
         $botman->receivesFiles(function($botman, $files) use($bot) {
                  $storeid = $this->retrieveUserStore($botman);
@@ -51,7 +52,8 @@ class BotmanController extends Controller
                         file_put_contents($storagePath . $filename, $fileContents);
                         $pdf_inpath = $storagePath . $filename;
                         $img_outpath = $storagePath . $imgname;
-                        $this -> convertPdfToImage($pdf_inpath,$img_outpath);
+                        $pdfConverterService = new PdfConverterService($pdf_inpath);
+                        $this -> convertPdfToImage($img_outpath,$pdfConverterService);
                         Log::debug('Converted image file saved as: ' . $img_outpath);
                  }
         });
@@ -119,7 +121,7 @@ class BotmanController extends Controller
 
     }
 
-
+    #Deprecated
     public function extractTextFromPDF($pdfpath){
         $text = "I am sad !! it seems there is a problem reading the PDF";    
         try{
@@ -194,8 +196,9 @@ class BotmanController extends Controller
 
     public function askGPT($bot, $request)
     {
+       $client = new Client();
        if ($request){
-          $response = $this -> communicateGPT4($request);
+          $response = $this -> communicateGPT4($client,$request);
           if ($response->getStatusCode()==200){
               $bot -> replyWithDelay($this->hex2Umlaub(json_decode($response->getBody())->Response));
           }
@@ -209,10 +212,10 @@ class BotmanController extends Controller
 
     }
 
-    public function communicateGPT4($request)
+    public function communicateGPT4($httpClient,$request)
     {
       
-      $client = new Client();
+      $client = $httpClient;
       
       try{
            $response = $client->post($this->url, [
@@ -288,17 +291,9 @@ class BotmanController extends Controller
    }
 
 
-   public function convertPdfToImage($pdfPath, $outputImagePath)
+   public function convertPdfToImage($outputImagePath, PdfConverterService $pdfConverterService)
    {
-     try{
-      $pdf = new PdfToImage($pdfPath);
-      $pdf->setOutputFormat('png'); 
-      $pdf->saveImage($outputImagePath);
-
-     } catch (Exception $e){
-        Log::debug($e -> getMessage());
-     }
-    
-    } 
+     $pdfConverterService->convertToImage($outputImagePath);
+   }   
    
 }
