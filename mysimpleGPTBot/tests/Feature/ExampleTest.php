@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Mockery;
 use App\Services\PdfConverterService;
 #use Spatie\PdfToImage\Pdf as PdfToImage;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+#use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Http\Controllers\BotmanController;
 use Illuminate\Http\UploadedFile;
 use GuzzleHttp\Client;
@@ -25,7 +25,7 @@ class ExampleTest extends TestCase
     protected $pdfToImageMock;
     protected $fakePdfFilePath;
     
-    use RefreshDatabase;
+    #use RefreshDatabase;
     use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 
