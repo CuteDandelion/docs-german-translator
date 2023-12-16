@@ -163,7 +163,7 @@ class ExampleTest extends TestCase
 
     public function testExtractTextFromImage()
     {
-        $imagePath = '/home/dandelion/Desktop/fake_test.png';
+        $imagePath = storage_path('app/public/fake_test.png');
 
         $controller = new BotmanController();
 

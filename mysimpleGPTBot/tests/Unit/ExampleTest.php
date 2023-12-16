@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Support\Facades\Storage;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Http\Controllers\BotmanController;
@@ -9,6 +10,11 @@ use Illuminate\Support\Facades\Log;
 
 class ExampleTest extends TestCase
 {
+
+    public function setUp(): void
+    {
+        parent::setUp();
+    } 
 
     public function stringProvider()
     {
@@ -21,8 +27,7 @@ class ExampleTest extends TestCase
     public function pathProvider()
     {
         return [
-            ['/home/dandelion/Desktop/test','world.txt',true],
-            ['/home/dandelion/Desktop/test','hello.txt',false]
+            ['./storage/app/public','fake_test.png',true],
         ];
     }
     
@@ -75,7 +80,8 @@ class ExampleTest extends TestCase
      */
     public function testRetrieveImageFilename($dir,$topFilename,$expectedResult)
     {
-       
+        
+        // Test Start      
         Log::shouldReceive('debug')->andReturnNull();
 
         $controller = new BotmanController();
