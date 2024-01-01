@@ -83,6 +83,7 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 - [Method-Abstraction-For-Easy-Readability-Example](https://github.com/CuteDandelion/docs-german-translator/blob/d5969c4367a29977c1c32b985b787341e74337fe/mysimpleGPTBot/app/Http/Controllers/BotmanController.php#L59-L74)
 - [Function-With-Clear-Purpose-Example](https://github.com/CuteDandelion/docs-german-translator/blob/d5969c4367a29977c1c32b985b787341e74337fe/mysimpleGPTBot/app/Http/Controllers/BotmanController.php#L195-L210)
 - [Meaningful-Naming-Conventions-Comments-Example (Methods/Variables/Properties)](https://github.com/CuteDandelion/docs-german-translator/blob/d5969c4367a29977c1c32b985b787341e74337fe/mysimpleGPTBot/app/Http/Controllers/BotmanController.php#L260-L274)
+- [Tests-With-Specific-Goal-Example (Single Assert OR Multiple Asserts which are related)](https://github.com/CuteDandelion/docs-german-translator/blob/5100c68c3167f5c0eb45ad6ffe50e6863457ade4/mysimpleGPTBot/tests/Unit/ExampleTest.php#L61-L94)
 
 ### Build Management Tool ###
 
