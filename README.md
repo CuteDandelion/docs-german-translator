@@ -73,6 +73,7 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 ## CHEAT SHEET
 
 ## DDD (DOMAIN DRIVEN DEVELOPMENT)
+- [Domain Driven Development (PDF)](https://github.com/CuteDandelion/docs-german-translator/blob/main/DomainDrivenDev/DomainDrivenDesign.pdf)
 
 ## CLEAN CODE (CODE SNIPPET,BUILD & UNIT TESTS)
 
