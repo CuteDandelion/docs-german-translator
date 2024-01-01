@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Define variables
+PROJECT_DIR=mysimpleGPTBot
+ENVIRONMENT=production
+
+# Navigate to the project directory
+cd $PROJECT_DIR
+
+# Make a copy of environment file and name it .env
+cp .env.example .env
+
+# Update Composer dependencies
+echo "Updating Composer dependencies..."
+composer install --no-interaction --optimize-autoloader
+
+# Install NPM dependencies and compile assets
+echo "Installing NPM dependencies and compiling assets..."
+npm install
+npm run production
+
+# Run database migrations and seed data (if needed)
+#echo "Running database migrations and seeding data..."
+#php artisan migrate --force
+# Uncomment the line below if you want to seed the database
+# php artisan db:seed --force
+
+# Optimize Laravel for production
+echo "Optimizing Laravel for production..."
+php artisan optimize --force
+
+# Clear caches
+echo "Clearing caches..."
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+
+# Restart your web server (replace with your specific web server command)
+# For example, if you're using Apache:
+# sudo service apache2 restart
+
+# Optionally, run additional tasks specific to your project
+# For example, you might need to clear a specific cache or restart a queue worker
+
+# Generate Key for Application & Tests to work
+php artisan key:generate
+# Run Tests
+php artisan test
+
+echo "Build process completed successfully."
