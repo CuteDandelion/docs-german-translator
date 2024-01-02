@@ -34,9 +34,6 @@ jobs:
         run: |
           pwd
 
-      - name: modified permission of env file
-        run : chmod +x setenv.sh
-
       - name: setup environment
         run : ./setenv.sh
 
