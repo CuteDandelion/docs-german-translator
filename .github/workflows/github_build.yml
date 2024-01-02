@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: $GITHUB_WORKSPACE/mysimpleGPTBot
+        working-directory: mysimpleGPTBot
 
     services:
       mysql:
