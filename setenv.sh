@@ -31,3 +31,4 @@ sudo sed -i 's/memory_limit = .*/memory_limit = -1/' /etc/php/8.0/cli/php.ini
 sudo sed -i 's/post_max_size = .*/post_max_size = 512M/' /etc/php/8.0/cli/php.ini
 sudo sed -i 's/upload_max_filesize = .*/upload_max_filesize = 512M/' /etc/php/8.0/cli/php.ini
 
+#
