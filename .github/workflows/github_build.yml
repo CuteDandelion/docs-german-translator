@@ -30,27 +30,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: debugging 
+      - name: Display working directory path
         run: |
           pwd
-          ls -la
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12.22.12'
-          cache: 'npm'
+      - name: modified permission of env file
+        run : chmod +x setenv.sh
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0'
-          extensions: mbstring, xml, zip, pdo, pdo_mysql
-          composer-version: '2.6.4'
-          ini-values: |
-            memory_limit=-1
-            post_max_size=512M
-            upload_max_filesize=512M
+      - name: setup environment
+        run : ./setenv.sh
 
       - name: Install Composer dependencies
         run: composer install --no-interaction --optimize-autoloader
