@@ -1,19 +1,86 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: MyPersonalGermanGPTBot CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  Explore-GitHub-Actions:
+  build-and-test:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_DATABASE: botman_chatbot
+          MYSQL_USER: root
+          MYSQL_PASSWORD: 
+          MYSQL_ROOT_PASSWORD: 
+        ports:
+          - 3306:3306
+
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.22.12'
+          cache: 'npm'
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          extensions: mbstring, xml, zip, pdo, pdo_mysql
+          composer-version: '2.6.4'
+          ini-values: |
+            memory_limit=-1
+            post_max_size=512M
+            upload_max_filesize=512M
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --optimize-autoloader
+
+      - name: Install NPM dependencies and compile assets
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          npm install
+          npm run production
+
+      - name: Create .env file
+        run: cp .env.example .env
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: botman_chatbot
+          DB_USERNAME: root
+          DB_PASSWORD: 
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Run tests
+        run: php artisan test
+
+      - name: Optimize Laravel for production
+        run: php artisan optimize --force
+
+      - name: Clear caches
+        run: |
+          php artisan cache:clear
+          php artisan config:clear
+          php artisan route:clear
+          php artisan view:clear
+
+      # You can add more steps here if needed, such as restarting your web server
+      
+      - name: Build process completed successfully
+        run: echo "Build process completed successfully."
+      
 
