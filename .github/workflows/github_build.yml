@@ -1,4 +1,4 @@
-name: MyPersonalGermanGPTBot CI
+name: Laravel CI
 
 on:
   push:
@@ -16,10 +16,10 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_DATABASE: botman_chatbot
-          MYSQL_USER: root
-          MYSQL_PASSWORD: 
-          MYSQL_ROOT_PASSWORD: 
+          MYSQL_DATABASE: laravel
+          MYSQL_USER: laravel
+          MYSQL_PASSWORD: secret
+          MYSQL_ROOT_PASSWORD: root_password
         ports:
           - 3306:3306
 
@@ -27,14 +27,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Navigate to project directory
-        run: cd $GITHUB_WORKSPACE/mysimpleGPTBot
+      - name: debugging 
+        run: |
+          pwd
+          ls -la
+
+      - name: Navigating to project directory
+        run: cd /home/runner/work/docs-german-translator/mysimpleGPTBot
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-           node-version: '12.22.12'
-           cache: 'npm'
+          node-version: '12.22.12'
+          cache: 'npm'
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -61,9 +66,9 @@ jobs:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
-          DB_DATABASE: botman_chatbot
-          DB_USERNAME: root
-          DB_PASSWORD: 
+          DB_DATABASE: laravel
+          DB_USERNAME: laravel
+          DB_PASSWORD: secret
 
       - name: Generate application key
         run: php artisan key:generate
@@ -82,8 +87,7 @@ jobs:
           php artisan view:clear
 
       # You can add more steps here if needed, such as restarting your web server
-      
+      #
       - name: Build process completed successfully
         run: echo "Build process completed successfully."
-      
-
+      #
