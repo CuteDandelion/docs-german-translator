@@ -27,6 +27,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Navigate to the project directory
+      - name: Navigate to project directory
+        run: cd mysimpleGPTBot
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
