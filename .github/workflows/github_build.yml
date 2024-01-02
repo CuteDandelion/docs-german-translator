@@ -11,15 +11,18 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: $GITHUB_WORKSPACE/mysimpleGPTBot
 
     services:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_DATABASE: laravel
-          MYSQL_USER: laravel
-          MYSQL_PASSWORD: secret
-          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: botman_chatbot
+          MYSQL_USER: root
+          MYSQL_PASSWORD: 
+          MYSQL_ROOT_PASSWORD: 
         ports:
           - 3306:3306
 
@@ -31,9 +34,6 @@ jobs:
         run: |
           pwd
           ls -la
-
-      - name: Navigating to project directory
-        run: cd /home/runner/work/docs-german-translator/mysimpleGPTBot
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -66,9 +66,9 @@ jobs:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
-          DB_DATABASE: laravel
-          DB_USERNAME: laravel
-          DB_PASSWORD: secret
+          DB_DATABASE: botman_chatbot
+          DB_USERNAME: root
+          DB_PASSWORD: 
 
       - name: Generate application key
         run: php artisan key:generate
