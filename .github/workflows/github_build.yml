@@ -35,8 +35,7 @@ jobs:
           pwd
 
       - name: setup environment
-        run : ./setenv.sh
-        working-directory: $GITHUB_WORKSPACE
+        run : ../setenv.sh
 
       - name: Install Composer dependencies
         run: composer install --no-interaction --optimize-autoloader
