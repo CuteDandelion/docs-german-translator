@@ -31,11 +31,11 @@ jobs:
       - name: Navigate to project directory
         run: cd mysimpleGPTBot
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12.22.12'
-          cache: 'npm'
+     # - name: Setup Node.js
+     #   uses: actions/setup-node@v2
+     #   with:
+     #     node-version: '12.22.12'
+     #     cache: 'npm'
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
