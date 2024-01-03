@@ -62,7 +62,7 @@ jobs:
         run: php artisan test
 
       - name: Optimize Laravel for production
-        run: php artisan optimize --force
+        run: php artisan optimize 
 
       - name: Clear caches
         run: |
