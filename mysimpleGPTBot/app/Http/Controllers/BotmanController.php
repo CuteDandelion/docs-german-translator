@@ -140,12 +140,12 @@ class BotmanController extends Controller
 
     }
 
-    public function extractTextFromImage($imagePath)
+    public function extractTextFromImage($imagePath, OCR $ocr = null)
     {
         $timeout = 100;
         $text = "I am sad !! it seems there is a problem reading the PDF";
         try{
-        $text = (new OCR($imagePath))
+        $text = ($ocr ?? new OCR($imagePath))
             ->lang('eng', 'deu')
             ->psm(6)
             ->oem(3)

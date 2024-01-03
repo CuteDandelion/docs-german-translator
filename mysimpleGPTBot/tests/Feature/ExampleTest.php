@@ -3,6 +3,9 @@
 namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Log;
+use thiagoalessio\TesseractOCR\TesseractOCR as OCR;
 use Mockery;
 use App\Services\PdfConverterService;
 #use Spatie\PdfToImage\Pdf as PdfToImage;
@@ -26,6 +29,7 @@ class ExampleTest extends TestCase
     protected $fakePdfFilePath;
     
     #use RefreshDatabase;
+    use WithFaker;
     use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 
@@ -86,13 +90,14 @@ class ExampleTest extends TestCase
 
     /**
      * Test `freegpt_API_Availability`.
+     * Optional Test : To verify if API Service is up.
      */
-    public function testApiAvailability()
+    /*public function testApiAvailability()
     {
         $url = 'http://localhost:8001/post/gpt4?prompt=""';
         $response = Http::post($url);
         $this->assertEquals(200,$response->status()); 
-    } 
+    }*/ 
     
 
     /**
@@ -165,13 +170,21 @@ class ExampleTest extends TestCase
     {
         $imagePath = storage_path('app/public/fake_test.png');
 
+        // Mock the behavior of the OCR class to simulate successful extraction
+        $spyOCR = $this->getMockBuilder(OCR::class)
+                ->onlyMethods(['run']) // Only spy on the 'run' method
+                ->getMock();
+
+        $spyOCR->expects($this->once())
+            ->method('run')
+            ->with($timeout=100)
+            ->willReturn('Fake PDF Content');
+
         $controller = new BotmanController();
-
-        $result = $controller->extractTextFromImage($imagePath);
-
-        $this->assertNotEmpty($result);
-        $this->assertStringContainsString('Fake', $result);
+        $result = $controller->extractTextFromImage($imagePath,$spyOCR);
+        $this->assertEquals('Fake PDF Content', $result);
     }
+
 
    /**
      * Execute After Tests End
