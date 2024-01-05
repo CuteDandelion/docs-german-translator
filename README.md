@@ -6,7 +6,7 @@
 ![CodeMaintainability](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/maintainability.svg)
 ![QualityGate](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/quality_gate.svg)
 ![CodeReliability](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/reliability.svg)
-![TechnicalDebt](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/reliability.svg)
+![TechnicalDebt](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/technical_debt.svg)
 
 ## SonarQube 
 
