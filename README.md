@@ -1,3 +1,16 @@
+## Measures 
+
+![CodeLines](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/code_lines.svg)
+![CodeSmells](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/code_smells.svg)
+![CodeCoverage](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/coverage.svg)
+![CodeMaintainability](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/maintainability.svg)
+![QualityGate](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/quality_gate.svg)
+![CodeReliability](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/reliability.svg)
+![TechnicalDebt](https://github.com/CuteDandelion/docs-german-translator/blob/main/SonarQubeMeasures/reliability.svg)
+
+## SonarQube 
+
+- [ImageOverview](https://github.com/CuteDandelion/docs-german-translator/tree/main/SonarQubeMeasures)
 
 ## Table Of Content
 
@@ -88,6 +101,10 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 ### Build Management Tool ###
 
 - [Jenkins (Setup to build automatically + Run Tests)](https://github.com/CuteDandelion/docs-german-translator/tree/main/JenkinsFiles)
+- [Github Actions (Setup to build automatically + Run Tests + Run SonarQube Scan)](https://github.com/CuteDandelion/docs-german-translator/blob/main/.github/workflows/github_build.yml)
+
+### Github Actions History ###
+- [Actions History](https://github.com/CuteDandelion/docs-german-translator/actions/runs/7425547388)
 
 ### Unit Tests && Feature Tests ###
 
