@@ -75,24 +75,20 @@ jobs:
       #
       - name: Build process completed successfully
         run: echo "Build process completed successfully."
-   
-  sonarqube:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    steps:
+  
+  #Optional : Enable SonarScan to analyze code. Make sure sonar server + github is properly setup before enabling.
+  #sonarqube:
+  #  needs: build-and-test
+  #  runs-on: ubuntu-latest
+  #  steps:
 
-    - uses: actions/checkout@v3
-      with:
-        # Disabling shallow clones is recommended for improving the relevancy of reporting
-        fetch-depth: 0
-        #projectBaseDir: mysimpleGPTBot
-        #args: >
-        #  -Dsonar.python.coverage.reportPaths=coverage.xml
-        #  -Dsonar.tests=mysimpleGPTBot/tests/Feature/,mysimpleGPTBot/tests/Unit/
-        #  -Dsonar.verbose=true
+  #  - uses: actions/checkout@v3
+  #    with:
+  #      # Disabling shallow clones is recommended for improving the relevancy of reporting
+  #      fetch-depth: 0
 
-    - name: SonarQube Scan
-      uses: sonarsource/sonarqube-scan-action@master
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  #  - name: SonarQube Scan
+  #    uses: sonarsource/sonarqube-scan-action@master
+  #    env:
+  #      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
