@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="8" assertions="19" errors="0" warnings="0" failures="0" skipped="0" time="0.614914">
+    <testsuite name="Unit" tests="4" assertions="6" errors="0" warnings="0" failures="0" skipped="0" time="0.022863">
+      <testsuite name="Tests\Unit\ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Unit/ExampleTest.php" tests="4" assertions="6" errors="0" warnings="0" failures="0" skipped="0" time="0.022863">
+        <testcase name="test_example" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Unit/ExampleTest.php" line="56" assertions="1" time="0.004560"/>
+        <testsuite name="Tests\Unit\ExampleTest::testHex2Umlaub" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.003704">
+          <testcase name="testHex2Umlaub with data set #0" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Unit/ExampleTest.php" line="66" assertions="1" time="0.002978"/>
+          <testcase name="testHex2Umlaub with data set #1" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Unit/ExampleTest.php" line="66" assertions="1" time="0.000726"/>
+        </testsuite>
+        <testsuite name="Tests\Unit\ExampleTest::testRetrieveImageFilename" tests="1" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.014598">
+          <testcase name="testRetrieveImageFilename with data set #0" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Unit/ExampleTest.php" line="81" assertions="3" time="0.014598"/>
+        </testsuite>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Feature" tests="4" assertions="13" errors="0" warnings="0" failures="0" skipped="0" time="0.592051">
+      <testsuite name="Tests\Feature\ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Feature/ExampleTest.php" tests="4" assertions="13" errors="0" warnings="0" failures="0" skipped="0" time="0.592051">
+        <testcase name="test_example" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Feature/ExampleTest.php" line="83" assertions="1" time="0.279009"/>
+        <testcase name="testCommunicateGpt4" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Feature/ExampleTest.php" line="106" assertions="8" time="0.063638"/>
+        <testcase name="testConvertPdfToImage" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Feature/ExampleTest.php" line="142" assertions="2" time="0.191218"/>
+        <testcase name="testExtractTextFromImage" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" file="/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/tests/Feature/ExampleTest.php" line="169" assertions="2" time="0.058186"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
