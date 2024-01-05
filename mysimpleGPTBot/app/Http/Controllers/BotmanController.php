@@ -132,7 +132,7 @@ class BotmanController extends Controller
             $text = $textExtractor->text();
           }
         }
-        catch (Exception $e){
+        catch (\Exception $e){
 
           Log::debug($e->getMessage());
         }
@@ -152,7 +152,7 @@ class BotmanController extends Controller
             ->dpi(300)
             ->run($timeout);
         }
-        catch(Exception $e){
+        catch(\Exception $e){
            Log::debug($e->getMessage());
         }
         return $text;
@@ -230,7 +230,7 @@ class BotmanController extends Controller
 
                          'http_errors' => false
                       ]);
-      } catch (RequestException $e){
+      } catch (\RequestException $e){
            if ($e->hasResponse()){
            $response = $e->getResponse();
            }
@@ -269,7 +269,7 @@ class BotmanController extends Controller
         $filename = $files[$top];
         $fullpath = $dir.$filename;
         $latestfile = new Image(str_replace('/opt/laravelprojects/mygpttranslator/mysimpleGPTBot/storage/uploads/','http://localhost:8000/file-access/',$fullpath));
-      } catch (Exception $e){
+      } catch (\Exception $e){
          Log::debug($e->getMessage());
       }
 
@@ -283,7 +283,7 @@ class BotmanController extends Controller
         //In Desc Order By Timestamp in seconds
         $files = scandir($dir,1);
         $filename = $files[$order];
-      } catch (Exception $e){
+      } catch (\Exception $e){
          Log::debug($e->getMessage());
       }
 
