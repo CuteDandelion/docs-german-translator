@@ -85,11 +85,11 @@ jobs:
       with:
         # Disabling shallow clones is recommended for improving the relevancy of reporting
         fetch-depth: 0
-        projectBaseDir: mysimpleGPTBot
-        args: >
-          -Dsonar.python.coverage.reportPaths=coverage.xml
-          -Dsonar.tests=tests/
-          -Dsonar.verbose=true
+        #projectBaseDir: mysimpleGPTBot
+        #args: >
+        #  -Dsonar.python.coverage.reportPaths=coverage.xml
+        #  -Dsonar.tests=mysimpleGPTBot/tests/Feature/,mysimpleGPTBot/tests/Unit/
+        #  -Dsonar.verbose=true
 
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
