@@ -87,6 +87,7 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 
 ## DDD (DOMAIN DRIVEN DEVELOPMENT)
 - [Domain Driven Development (PDF)](https://github.com/CuteDandelion/docs-german-translator/blob/main/DomainDrivenDev/DomainDrivenDesign.pdf)
+- [DDD Miro Link](https://miro.com/app/board/uXjVN-syDkw=/?share_link_id=306153052032)
 
 ## CLEAN CODE (CODE SNIPPET,BUILD & UNIT TESTS)
 
