@@ -1,3 +1,5 @@
+//This is a RUST program, variables are defined immutable by default unless mut is specified. So, it should be side effect free.
+
 use std::env;
 use polars::prelude::*;
 use std::error::Error;
@@ -59,6 +61,7 @@ fn main() {
     let exclude_columns = &["id", "diagnosis"];
 
     match df{
+        //the closure is passed into apply_operation function
         Ok(df) =>  {let new_df = apply_operation(df.clone(), exclude_columns, double_operation);println!("{:?}", new_df);}
         Err(error) => {eprintln!("Error : {:?}", error);}
     }
