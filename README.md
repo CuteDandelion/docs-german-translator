@@ -14,13 +14,15 @@
 
 ## Functional Programming
 
-Functional Programming:
+### Definitions
 
-only final data structures/immutable data structure (variables)
-(mostly) side-effect-free functions
-the use of higher-order functions
-functions as parameters and return values
-use closures / anonymous functions
+- only final data structures/immutable data structure (variables)
+- (mostly) side-effect-free functions
+- the use of higher-order functions
+- functions as parameters and return values
+- use closures / anonymous functions
+
+### Example
 
 - [>> Link To Functional Programming Example <<](https://github.com/CuteDandelion/docs-german-translator/blob/main/functionalProgrammingExample/main.rs)
 
