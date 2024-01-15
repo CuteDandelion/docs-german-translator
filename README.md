@@ -100,7 +100,7 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 
 ## CHEAT SHEET
 
-- [Clean Code Development Cheat Sheet](https://github.com/CuteDandelion/docs-german-translator/blob/main/CheatSheet/CCD-CheatSheet.txt)
+- [Clean Code Development Cheat Sheet](https://github.com/CuteDandelion/docs-german-translator/blob/main/CheatSheet/CCD_CheatSheet.pdf)
 
 ## DDD (DOMAIN DRIVEN DEVELOPMENT)
 - [Domain Driven Development (PDF)](https://github.com/CuteDandelion/docs-german-translator/blob/main/DomainDrivenDev/DomainDrivenDesign.pdf)
