@@ -129,7 +129,9 @@ Lets learn German !!!!!! Los Geht's !!!!!!
 
 ### Unit Tests && Feature Tests ###
 
-- [Tests Scripts (Under Feature/ExampleTest.php && Unit/ExampleTest.php)](https://github.com/CuteDandelion/docs-german-translator/tree/main/mysimpleGPTBot/tests)
+- [Unit Tests](https://github.com/CuteDandelion/docs-german-translator/blob/main/mysimpleGPTBot/tests/Unit/ExampleTest.php)
+- [Feature Tests](https://github.com/CuteDandelion/docs-german-translator/blob/main/mysimpleGPTBot/tests/Feature/ExampleTest.php)
+- [>> Link To Test Results <<](https://github.com/CuteDandelion/docs-german-translator/tree/main/mysimpleGPTBot/tests/coverage)
 
 ## IDE
 
