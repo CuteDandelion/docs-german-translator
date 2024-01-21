@@ -26,6 +26,9 @@
 
 - [>> Link To Functional Programming Example <<](https://github.com/CuteDandelion/docs-german-translator/blob/main/functionalProgrammingExample/main.rs)
 
+## Analysis
+
+- [>> Link To Implementation Analysis <<](https://github.com/CuteDandelion/docs-german-translator/blob/main/Analysis/Analysis%20(%20E%20-%20Learning%20Platform%20).pdf)
 
 ## Table Of Content
 
